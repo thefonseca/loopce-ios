@@ -12,10 +12,8 @@
 @interface AWBitmap : NSObject
 
 @property (strong, nonatomic) AWBitmapHeader *header;
-//@property (strong, nonatomic) NSData *pixels;
 @property (strong, nonatomic) NSMutableString *message;
 
-//+(AWBitmap*)bitmapWithData:(NSData*)data;
 -(void)appendData:(NSData*)data;
 
 @end

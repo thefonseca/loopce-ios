@@ -27,40 +27,39 @@ static NSUInteger const kAWHeaderSize = 14;
         return nil;
     }
     
-    //self.bytesAdded = 0;
     self.maxLength = kAWHeaderSize;
     self.data = [NSMutableData new];
     return self;
 }
 
-/*+(AWBitmapHeader*)headerWithData:(NSData*)data
+-(NSUInteger)appendData:(NSData*)data
 {
-    AWBitmapHeader *header = [AWBitmapHeader new];
+    NSUInteger added = self.maxLength - self.data.length;
     
-    // BMP header
-    NSData *subData = [data subdataWithRange:NSMakeRange(0, 2)];
-    header.typeId = [[NSString alloc] initWithData:subData encoding:NSASCIIStringEncoding];
+    if (added > 0) {
+        [self.data appendData:[data subdataWithRange:NSMakeRange(0, added)]];
+    }
     
-    header.fileSize = [AWBitmapHeader intFromData:data offset:2];
-    header.applicationSpecific1 = [AWBitmapHeader shortFromData:data offset:6];
-    header.applicationSpecific2 = [AWBitmapHeader shortFromData:data offset:8];
-    header.pixelArrayOffset = [AWBitmapHeader intFromData:data offset:10];
+    // DIB header data has variable size
+    if (self.maxLength == self.data.length && self.pixelArrayOffset > self.maxLength) {
+        self.maxLength = self.pixelArrayOffset;
+        
+        NSUInteger addedDIB = self.maxLength - self.data.length;
+        added += addedDIB;
+        
+        if (addedDIB > 0) {
+            [self.data appendData:[data subdataWithRange:NSMakeRange(self.data.length, addedDIB)]];
+            
+        }
+    }
     
-    // DIB header
-    header.dibSize = [AWBitmapHeader intFromData:data offset:14];
-    header.height = [AWBitmapHeader intFromData:data offset:18];
-    header.width = [AWBitmapHeader intFromData:data offset:22];
-    header.colorPlanes = [AWBitmapHeader shortFromData:data offset:26];
-    header.bitsPerPixel = [AWBitmapHeader shortFromData:data offset:28];
-    header.compressionMethod = [AWBitmapHeader intFromData:data offset:30];
-    header.rawBitmapSize = [AWBitmapHeader intFromData:data offset:34];
-    header.horizontalResolution = [AWBitmapHeader intFromData:data offset:38];
-    header.verticalResolution = [AWBitmapHeader intFromData:data offset:42];
-    header.colorsInPalette = [AWBitmapHeader intFromData:data offset:46];
-    header.importantColors = [AWBitmapHeader intFromData:data offset:50];
-                  
-    return header;
-}*/
+    return added;
+}
+
+-(BOOL)complete
+{
+    return self.data.length == self.maxLength && self.pixelArrayOffset >= self.maxLength;
+}
 
 -(NSString *)typeId
 {
@@ -159,38 +158,10 @@ static NSUInteger const kAWHeaderSize = 14;
     return *((unsigned int*)[subData bytes]);
 }
 
--(NSUInteger)appendData:(NSData*)data
-{
-    NSUInteger added = self.maxLength - self.data.length;
-    
-    if (added > 0) {
-        [self.data appendData:[data subdataWithRange:NSMakeRange(0, added)]];
-    }
-    
-    // DIB header data has variable size
-    if (self.maxLength == self.data.length && self.pixelArrayOffset > self.maxLength) {
-        self.maxLength = self.pixelArrayOffset;
-        
-        NSUInteger addedDIB = self.maxLength - self.data.length;
-        added += addedDIB;
-        
-        if (addedDIB > 0) {
-            [self.data appendData:[data subdataWithRange:NSMakeRange(self.data.length, addedDIB)]];
-            
-        }
-    }
-    
-    return added;
-}
-
--(BOOL)complete
-{
-    return self.data.length == self.maxLength && self.pixelArrayOffset >= self.maxLength;
-}
-
 -(NSString *)description
 {
-    NSMutableString *descriptionString = [NSMutableString stringWithFormat:@"- Id: %@\n", self.typeId];
+    NSMutableString *descriptionString = [NSMutableString stringWithString:@"\nBitmap File Header\n"];
+    [descriptionString appendString:[NSMutableString stringWithFormat:@"- Id: %@\n", self.typeId]];
     [descriptionString appendString:[NSMutableString stringWithFormat:@"- File size: %d bytes\n", self.fileSize]];
     [descriptionString appendString:[NSMutableString stringWithFormat:@"- Application specific 1: %d\n", self.applicationSpecific1]];
     [descriptionString appendString:[NSMutableString stringWithFormat:@"- Application specific 2: %d\n", self.applicationSpecific2]];

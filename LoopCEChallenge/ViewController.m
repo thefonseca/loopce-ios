@@ -13,8 +13,6 @@
 @interface ViewController ()
 
 @property (strong, nonatomic) NSInputStream *iStream;
-@property (strong, nonatomic) NSMutableData *data;
-//@property (strong, nonatomic) NSNumber *bytesRead;
 @property (strong, nonatomic) AWBitmap *bitmap;
 
 @end
@@ -24,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.label.alpha = 0;
+    
     self.bitmap = [AWBitmap new];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"testImage" ofType:@"bmp"];
@@ -48,10 +48,6 @@
     switch(eventCode) {
         case NSStreamEventHasBytesAvailable:
         {
-            if(!_data) {
-                _data = [[NSMutableData alloc] init];
-            }
-            
             uint8_t buf[1024];
             long len = 0;
             len = [(NSInputStream *)stream read:buf maxLength:1024];
@@ -59,9 +55,6 @@
             if(len) {
                 
                 [self.bitmap appendData:[NSData dataWithBytes:buf length:len]];
-                
-                //[_data appendBytes:(const void *)buf length:len];
-                //self.bytesRead = @([self.bytesRead intValue]+len);
                 
             } else {
                 NSLog(@"no buffer!");
@@ -77,8 +70,8 @@
                               forMode:NSDefaultRunLoopMode];
             stream = nil;
             
-            //self.bitmap = [AWBitmap bitmapWithData:self.data];
-            NSLog(@"Bitmap data:\n\n%@", self.bitmap.description);
+            self.label.text = self.bitmap.message;
+            NSLog(@"Bitmap data:\n%@", self.bitmap.description);
             
             break;
         }
@@ -109,6 +102,35 @@
             
     }
     
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    CGFloat scrollOffset = scrollView.contentOffset.y;
+    CGFloat scrollOffsetYLimit = -CGRectGetHeight(scrollView.bounds) / 5;
+    
+    if (scrollOffset < scrollOffsetYLimit) {
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, scrollOffsetYLimit);
+        scrollOffset = scrollOffsetYLimit;
+    }
+    
+    CGFloat newHeight = self.imageView.frame.size.height - scrollOffset;
+    CGFloat newScale = newHeight/self.imageView.frame.size.height;
+    
+    if (scrollOffset < 0.0) {
+        if (newScale > 1.0 && newScale < 2.0)
+        {
+            self.imageView.transform = CGAffineTransformMakeScale(newScale, newScale);
+            CGFloat xPos = (self.imageView.superview.frame.size.width - self.imageView.frame.size.width)/2;
+            [self.imageView setFrame:CGRectMake(xPos, 0, self.imageView.frame.size.width, self.imageView.frame.size.height)];
+            
+        }
+        
+        self.imageView.alpha = 1 - scrollOffset/scrollOffsetYLimit;
+        self.scrolldownLabel.alpha = 1 - scrollOffset/scrollOffsetYLimit;
+        self.label.alpha = scrollOffset/scrollOffsetYLimit;
+    }
 }
 
 

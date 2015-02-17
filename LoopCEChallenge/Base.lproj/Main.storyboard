@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hPD-yN-SnG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--LoopCE Challenge-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,23 +17,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage.bmp" translatesAutoresizingMaskIntoConstraints="NO" id="J6R-og-cro">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="321"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDt-VG-qva">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-z6-zcI">
+                                        <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage.bmp" translatesAutoresizingMaskIntoConstraints="NO" id="J6R-og-cro">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="321"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="J6R-og-cro" secondAttribute="height" multiplier="200:107" id="toi-Os-u03"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scroll down to reveal message..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2A-Xf-fy2">
+                                        <rect key="frame" x="8" y="341" width="584" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="J6R-og-cro" secondAttribute="height" multiplier="200:107" id="toi-Os-u03"/>
+                                    <constraint firstItem="p2A-Xf-fy2" firstAttribute="top" secondItem="J6R-og-cro" secondAttribute="bottom" constant="20" id="57s-LU-yfa"/>
+                                    <constraint firstItem="J6R-og-cro" firstAttribute="top" secondItem="DDt-VG-qva" secondAttribute="top" id="6WC-4O-VMx"/>
+                                    <constraint firstAttribute="trailing" secondItem="IYG-z6-zcI" secondAttribute="trailing" constant="8" id="C2X-qs-m5q"/>
+                                    <constraint firstAttribute="bottom" secondItem="IYG-z6-zcI" secondAttribute="bottom" constant="571" id="OtR-4b-zZV"/>
+                                    <constraint firstAttribute="height" constant="600" id="Uie-rS-1ur"/>
+                                    <constraint firstAttribute="trailing" secondItem="J6R-og-cro" secondAttribute="trailing" id="XwF-gP-Wa9"/>
+                                    <constraint firstItem="J6R-og-cro" firstAttribute="leading" secondItem="DDt-VG-qva" secondAttribute="leading" id="YvZ-PQ-YJW"/>
+                                    <constraint firstItem="IYG-z6-zcI" firstAttribute="top" secondItem="DDt-VG-qva" secondAttribute="top" constant="8" id="a21-Zf-xIx"/>
+                                    <constraint firstItem="IYG-z6-zcI" firstAttribute="leading" secondItem="DDt-VG-qva" secondAttribute="leading" constant="8" id="lvv-2N-uox"/>
+                                    <constraint firstItem="J6R-og-cro" firstAttribute="width" secondItem="DDt-VG-qva" secondAttribute="width" id="p95-T7-8VF"/>
+                                    <constraint firstItem="p2A-Xf-fy2" firstAttribute="leading" secondItem="DDt-VG-qva" secondAttribute="leading" constant="8" id="rW2-m6-JVh"/>
+                                    <constraint firstAttribute="trailing" secondItem="p2A-Xf-fy2" secondAttribute="trailing" constant="8" id="vz5-13-Bfv"/>
                                 </constraints>
-                            </imageView>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Uie-rS-1ur"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="wre-N9-Ad7"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="J6R-og-cro" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ywl-8l-cv3"/>
-                            <constraint firstItem="J6R-og-cro" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="d9u-Ox-MVu"/>
-                            <constraint firstAttribute="trailing" secondItem="J6R-og-cro" secondAttribute="trailing" id="dP7-pC-7Lk"/>
+                            <constraint firstAttribute="trailing" secondItem="DDt-VG-qva" secondAttribute="trailing" id="Eaw-Ad-7oy"/>
+                            <constraint firstItem="DDt-VG-qva" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="l4J-Us-HnA"/>
+                            <constraint firstItem="DDt-VG-qva" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="r4s-zq-Ew0"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DDt-VG-qva" secondAttribute="bottom" id="zX9-XY-0dm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="LoopCE Challenge" id="Ko1-Y7-WvU"/>
+                    <connections>
+                        <outlet property="imageView" destination="J6R-og-cro" id="Rtc-MG-mFS"/>
+                        <outlet property="label" destination="IYG-z6-zcI" id="eK5-FU-Fhj"/>
+                        <outlet property="scrollView" destination="DDt-VG-qva" id="Ch3-xy-okv"/>
+                        <outlet property="scrolldownLabel" destination="p2A-Xf-fy2" id="Rrj-Ub-pGj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1234" y="457"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8bD-Y0-Ebk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hPD-yN-SnG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GqC-HZ-NVJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="U4j-1R-mXe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eSP-Jo-1Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="414" y="457"/>
         </scene>
     </scenes>
     <resources>

@@ -38,17 +38,6 @@
     return bitmap;
 }
 
--(NSString *)description
-{
-    NSMutableString *descriptionString = [NSMutableString stringWithFormat:@"Bitmap Header:\n%@\n\n", self.header];
-    
-    if (self.message && self.message.length) {
-        [descriptionString appendString:[NSMutableString stringWithFormat:@"\nMessage:\n%@", self.message]];
-    }
-    
-    return descriptionString;
-}
-
 -(void)appendData:(NSData*)data
 {
     
@@ -108,6 +97,17 @@
 -(NSUInteger)padding
 {
     return ((4 - ([self rowLength] % 4)) % 4);
+}
+
+-(NSString *)description
+{
+    NSMutableString *descriptionString = [NSMutableString stringWithFormat:@"%@", self.header];
+    
+    if (self.message && self.message.length) {
+        [descriptionString appendString:[NSMutableString stringWithFormat:@"\nMessage:\n%@", self.message]];
+    }
+    
+    return descriptionString;
 }
 
 // just for debugging

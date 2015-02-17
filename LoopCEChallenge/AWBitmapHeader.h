@@ -30,7 +30,6 @@
 @property (assign, nonatomic) unsigned int colorsInPalette;
 @property (assign, nonatomic) unsigned int importantColors;
 
-//+(AWBitmapHeader*)headerWithData:(NSData*)data;
 -(NSUInteger)appendData:(NSData*)data;
 -(BOOL)complete;
 

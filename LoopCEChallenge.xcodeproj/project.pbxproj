@@ -14,6 +14,9 @@
 		BAAACE2F1A92649000118EC4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAAACE2E1A92649000118EC4 /* Images.xcassets */; };
 		BAAACE321A92649000118EC4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAAACE301A92649000118EC4 /* LaunchScreen.xib */; };
 		BAAACE3E1A92649000118EC4 /* LoopCEChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAACE3D1A92649000118EC4 /* LoopCEChallengeTests.m */; };
+		BAAACE481A9267F900118EC4 /* testImage.bmp in Resources */ = {isa = PBXBuildFile; fileRef = BAAACE471A9267F900118EC4 /* testImage.bmp */; };
+		BAAACE4B1A92766100118EC4 /* AWBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAACE4A1A92766100118EC4 /* AWBitmap.m */; };
+		BAAACE4E1A92776100118EC4 /* AWBitmapHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAACE4D1A92776100118EC4 /* AWBitmapHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,11 @@
 		BAAACE371A92649000118EC4 /* LoopCEChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoopCEChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAAACE3C1A92649000118EC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAAACE3D1A92649000118EC4 /* LoopCEChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoopCEChallengeTests.m; sourceTree = "<group>"; };
+		BAAACE471A9267F900118EC4 /* testImage.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = testImage.bmp; sourceTree = "<group>"; };
+		BAAACE491A92766100118EC4 /* AWBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBitmap.h; sourceTree = "<group>"; };
+		BAAACE4A1A92766100118EC4 /* AWBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBitmap.m; sourceTree = "<group>"; };
+		BAAACE4C1A92776100118EC4 /* AWBitmapHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWBitmapHeader.h; sourceTree = "<group>"; };
+		BAAACE4D1A92776100118EC4 /* AWBitmapHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWBitmapHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,10 @@
 				BAAACE261A92649000118EC4 /* AppDelegate.m */,
 				BAAACE281A92649000118EC4 /* ViewController.h */,
 				BAAACE291A92649000118EC4 /* ViewController.m */,
+				BAAACE491A92766100118EC4 /* AWBitmap.h */,
+				BAAACE4A1A92766100118EC4 /* AWBitmap.m */,
+				BAAACE4C1A92776100118EC4 /* AWBitmapHeader.h */,
+				BAAACE4D1A92776100118EC4 /* AWBitmapHeader.m */,
 				BAAACE2B1A92649000118EC4 /* Main.storyboard */,
 				BAAACE2E1A92649000118EC4 /* Images.xcassets */,
 				BAAACE301A92649000118EC4 /* LaunchScreen.xib */,
@@ -96,6 +108,7 @@
 		BAAACE211A92649000118EC4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BAAACE471A9267F900118EC4 /* testImage.bmp */,
 				BAAACE221A92649000118EC4 /* Info.plist */,
 				BAAACE231A92649000118EC4 /* main.m */,
 			);
@@ -200,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAAACE2D1A92649000118EC4 /* Main.storyboard in Resources */,
+				BAAACE481A9267F900118EC4 /* testImage.bmp in Resources */,
 				BAAACE321A92649000118EC4 /* LaunchScreen.xib in Resources */,
 				BAAACE2F1A92649000118EC4 /* Images.xcassets in Resources */,
 			);
@@ -219,8 +233,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAACE4E1A92776100118EC4 /* AWBitmapHeader.m in Sources */,
 				BAAACE2A1A92649000118EC4 /* ViewController.m in Sources */,
 				BAAACE271A92649000118EC4 /* AppDelegate.m in Sources */,
+				BAAACE4B1A92766100118EC4 /* AWBitmap.m in Sources */,
 				BAAACE241A92649000118EC4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +362,7 @@
 				INFOPLIST_FILE = LoopCEChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -356,6 +373,7 @@
 				INFOPLIST_FILE = LoopCEChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
